@@ -6,11 +6,16 @@
   <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
   <script>
     let finalAmount=0.00, da=200.00,honorarium=500.00;
+    let parts;
+    function dateFormat(){
+      let dateValue = document.getElementById('date').value;
+      parts = dateValue.split("-"); 
+    }
     function travelRate(){
       let mode = document.getElementById("travelMode").value;
       let rate = document.getElementById("rate1");
       console.log(mode);
-      let price = {petrol_car:10, CNG_car:5,diesel_car:8,bus:4,taxi:8,other:0};
+      let price = {petrol_car:10, CNG_car:5,diesel_car:8,scooter:3,taxi:8,other:0};
       rate.value = price[mode];
     }
     function calculateAmount() {
@@ -45,7 +50,7 @@
 <body>
   <h2>Fill TA/DA Bill</h2>
   <form id="tadaForm">
-    <label>Date: <input type="date" id="date"></label><br><br>
+    <label>Date: <input type="date" id="date" onchange="dateFormat()"></label><br><br>
     <table>
       <tr>
         <td><label>Name: </td><td><input type="text" id="name" style="width:230px"></label></td>
@@ -75,6 +80,7 @@
             <option value="CNG_car">car (CNG)</option>
             <option value="diesel_car">car (Diesel)</option>
             <option value="bus">bus</option>
+            <option value="scooter">scooter</option>
             <option value="taxi">taxi</option>
             <option value="other">other</option>
           </select>
@@ -114,7 +120,10 @@
       const firstPage = pages[0];
       const secondPage = pages[1];
 
-      firstPage.drawText(document.getElementById("date").value, { x: 460, y: 770, size: 11 });
+      //firstPage.drawText(document.getElementById("date").value, { x: 460, y: 770, size: 11 });
+      firstPage.drawText(parts[2].toString(), { x: 462, y: 763, size: 11 });
+      firstPage.drawText(parts[1].toString(), { x: 480, y: 763, size: 11 });
+      firstPage.drawText(parts[0].toString(), { x: 500, y: 763, size: 11 });
       firstPage.drawText(document.getElementById("name").value, { x: 165, y: 715, size: 11 });
       firstPage.drawText(document.getElementById("designation").value, { x: 165, y: 695, size: 11 });
       firstPage.drawText(document.getElementById("mobile").value, { x: 450, y: 695, size: 11 });
