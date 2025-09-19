@@ -7,6 +7,7 @@
   <script>
     let finalAmount=0.00, da=200.00,honorarium=500.00;
     let parts;
+    
     function dateFormat(){
       let dateValue = document.getElementById('date').value;
       parts = dateValue.split("-"); 
@@ -97,6 +98,13 @@
         <label>Amount: <input type="number" id="amount2" readonly> </label> -->
         <br>
         <b><label>Total Amount: <input type="number" id="totalAmount" readonly> </label></b> (Calculated 2-way)
+        <br>
+        <b>D.A.: </b> <input type="number" id="da"> <br>
+        <b>Honorarium: </b> <input type="number" id="hono">
+        <script>
+          document.getElementById("da").value = da.toFixed(2);
+    document.getElementById("hono").value = honorarium.toFixed(2);
+        </script>
       <h3>Bank Details</h3>
       <table>
         <tr><td><label>Account Name: </label></td><td><input type="text" id="accName"></td></tr>
