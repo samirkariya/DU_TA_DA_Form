@@ -7,7 +7,6 @@
   <script>
     let finalAmount=0.00, da=200.00,honorarium=500.00;
     let parts;
-    
     function dateFormat(){
       let dateValue = document.getElementById('date').value;
       parts = dateValue.split("-"); 
@@ -15,7 +14,7 @@
     function travelRate(){
       let mode = document.getElementById("travelMode").value;
       let rate = document.getElementById("rate1");
-      console.log(mode);
+      
       let price = {petrol_car:10, CNG_car:5,diesel_car:8,scooter:3,taxi:8,other:0};
       rate.value = price[mode];
     }
@@ -27,25 +26,10 @@
       let total = km * rate;
       
       document.getElementById("amount1").value = total.toFixed(2);
-
-      // let km2 = document.getElementById("km2").value;
-      // let rate2 = document.getElementById("rate2").value;
-      // km2 = parseFloat(km2) || 0;
-      // rate2 = parseFloat(rate2) || 0;
-      // let total2 = km2 * rate2;
-      // // console.log(km+" "+rate+" "+total);
-      // document.getElementById("amount2").value = total2.toFixed(2);
       document.getElementById("totalAmount").value = (2*total).toFixed(2);
       finalAmount = (total*2)+da+honorarium;
     }
-
-    // function updateGrandTotal() {
-    //   let sum = 0;
-    //   for (let i = 1; i <= 2; i++) {
-    //     sum += parseFloat(document.getElementById("amount" + i).value) || 0;
-    //   }
-      
-    // }
+    
   </script>
 </head>
 <body>
@@ -71,9 +55,7 @@
       </tr>
     </table>
     <h3>A. Travel Allowance</h3>
-        <!-- <label>From: <input type="text" id="parentInst"></label> 
-        <label>To: <input type="text" id="ourInst"></label> -->
-
+      
         <label>Travel Mode (car/bus/taxi): 
           <select id="travelMode" name="travelMode" onchange="travelRate()">
              <option value="">--Select--</option>
@@ -90,12 +72,7 @@
         <label>Rate: <input type="number" id="rate1" style="width:50px" oninput="calculateAmount()"> </label>
         <label>Amount: <input type="number" id="amount1" readonly> </label>
         <br>
-        <!-- <label>From: <input type="text" id="parentInst"></label> 
-        <label>To: <input type="text" id="ourInst"></label> -->
-        <!-- <label>Travel Mode (car/bus/taxi): <input type="text" id="travelMode2" size="8"></label>
-        <label>KM: <input type="number" id="km2" style="width:50px" oninput="calculateAmount()"></label>
-        <label>Rate: <input type="number" id="rate2" style="width:50px" oninput="calculateAmount()"> </label>
-        <label>Amount: <input type="number" id="amount2" readonly> </label> -->
+    
         <br>
         <b><label>Total Amount: <input type="number" id="totalAmount" readonly> </label></b> (Calculated 2-way)
         <br>
@@ -113,7 +90,6 @@
         <tr><td><label>Account No.: </label></td><td><input type="text" id="accNo"></td></tr>
         <tr><td><label>ISFC Code: </label></td><td><input type="text" id="isfc"></td></tr>
       </table>
-
     <br>
     <button type="button" onclick="generatePDF()">Generate PDF</button>
   </form>
